@@ -1,0 +1,129 @@
+package com.example.administrator.xiaoxiong.script.sys;
+
+
+import com.example.administrator.xiaoxiong.bean.LinkBean;
+import com.example.administrator.xiaoxiong.script.BaseStep;
+
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Set;
+
+/**
+ * 柳虫残害清理
+ * Created by dell_2 on 2016/10/31.
+ */
+public class GoodsSave2 extends BaseStep {
+
+    private LinkedList<String> liuNames = new LinkedList<>();
+
+    private Set<String> sets = new HashSet<>();
+
+    public GoodsSave2(String line) {
+        if(line==null)return;
+        String[] vals = line.split(",");
+        for (String val : vals) {
+            if (val != null && !"".equals(val.trim())) {
+                sets.add(val);
+            }
+        }
+
+    }
+
+    public GoodsSave2() {
+    }
+
+
+    @Override
+    public boolean run() {
+        if(sets.isEmpty()){
+            return false;
+        }
+        htmlUtil.linkName("返回游戏");
+        htmlUtil.linkName("帮派");
+        htmlUtil.linkName("帮派管理");
+        htmlUtil.linkName("帮派仓库");
+        htmlUtil.linkName("存入物品");
+        htmlUtil.linkName("首页");
+        htmlUtil.linkName("上页");
+        do {
+            savePage();
+        } while (htmlUtil.linkName("下.页").isSuccess());
+        htmlUtil.linkName("返回游戏");
+        liuNames.clear();
+        return false;
+    }
+
+
+    /**
+     * 保存当页物品
+     */
+    public void savePage() {
+        ExistSale existSale = existSale();
+        while (existSale.exist) {
+            String name = existSale.name;
+            saveOne(name);
+            existSale = existSale();
+        }
+    }
+
+    /**
+     * 保存一个商品
+     *
+     * @param name 商品名称
+     */
+    public void saveOne(String name) {
+        LinkBean res = htmlUtil.linkName(name, getNotNames());
+        liuNames.add(res.getClickName());
+        htmlUtil.linkName("全部存入");
+        htmlUtil.linkName("返回物品列表");
+        System.out.println("保存了所有" + res.getClickName());
+    }
+
+
+    /**
+     * 检测是否有保存商品存在
+     *
+     * @return
+     */
+    public ExistSale existSale() {
+        ExistSale existSale = new ExistSale();
+        for (String s : sets) {
+            if (htmlUtil.exitsName(s, getNotNames())) {
+                existSale.exist = true;
+                existSale.name = s;
+                return existSale;
+            }
+        }
+        return existSale;
+    }
+
+    public String[] getNotNames() {
+        String[] s = {};
+        return liuNames.toArray(s);
+    }
+
+
+    private class ExistSale {
+        public boolean exist = false;
+        public String name = null;
+    }
+
+    public void putStep(GoodsSave2 step) {
+        sets.addAll(step.sets);
+    }
+
+    public void setGoods(String line) {
+        if (line == null) return;
+        String[] vals = line.split(",");
+        for (String val : vals) {
+            if (val != null && !"".equals(val.trim())) {
+                sets.add(val);
+            }
+        }
+
+    }
+}
+
+
+
+

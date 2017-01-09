@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.administrator.xiaoxiong.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            style="@style/btn_style"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:onClick="start"
+            android:text="开始" />
+        <Button
+            style="@style/btn_style"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:onClick="stopRun"
+            android:text="结束" />
+
+        <Button
+            style="@style/btn_style"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:onClick="webBack"
+            android:text="后退" />
+
+
+        <Button
+            style="@style/btn_style"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:onClick="shuQian"
+            android:text="书签" />
+        <Button
+            style="@style/btn_style"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:onClick="setScript"
+            android:text="脚本" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/myProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="8px" />
+
+    <WebView
+        android:layout_weight="10"
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/waitTime"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:inputType="number"
+            android:maxLines="1"
+            android:text="600" />
+        <EditText
+            android:id="@+id/fontSize"
+            android:hint="字体"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:inputType="number"
+            android:maxLines="1"
+            android:text="150" />
+
+        <Button
+            style="@style/btn_style"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:onClick="setTime"
+            android:text="设置" />
+        <TextView
+            android:id="@+id/showText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="none" />
+    </LinearLayout>
+</LinearLayout>
