@@ -18,7 +18,8 @@ import com.example.administrator.xiaoxiong.script.copy.normal.HeiFeng;
 import com.example.administrator.xiaoxiong.script.copy.normal.ShiRenGu;
 import com.example.administrator.xiaoxiong.script.copy.normal.TaiWei;
 import com.example.administrator.xiaoxiong.script.copy.normal.XueShan;
-import com.example.administrator.xiaoxiong.script.metarial.TianDiReHe;
+import com.example.administrator.xiaoxiong.script.metarial.TianDiReHeHe;
+import com.example.administrator.xiaoxiong.script.metarial.TianDiReHeRen;
 import com.example.administrator.xiaoxiong.script.yinzi.MangShe;
 import com.example.administrator.xiaoxiong.ui.activity.ScriptActivity;
 
@@ -55,7 +56,8 @@ public class ScriptAdapter extends BaseAdapter {
         scripts.add(new Script("食人谷", new ShiRenGu()));
         scripts.add(new Script("黑风", new HeiFeng()));
         scripts.add(new Script("蟒蛇", new MangShe()));
-        scripts.add(new Script("天地人和", new TianDiReHe()));
+        scripts.add(new Script("天地人和人", new TianDiReHeRen()));
+        scripts.add(new Script("天地人和和", new TianDiReHeHe()));
     }
 
     public int getCount() {
